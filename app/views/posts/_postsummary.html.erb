@@ -1,0 +1,18 @@
+<% if @posts %>
+<table class="table">
+	<% @posts.each do |post| %>
+	<tr>
+		<td><%= image_tag post.user.user_profile.profile_pic, class: 'thumb-pic' %></td>
+		<td>
+			
+				<p>
+				<strong><%= post.user.name %></strong> at <%= post.created_at.strftime("%I:%M%p") %><br>
+				<%= post.body %>
+				</p>
+			
+		</td>
+	</tr>
+	<hr>
+	<% end %>
+</table>
+<% end %>

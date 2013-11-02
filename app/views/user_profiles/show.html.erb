@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="span6">
+	
+	<p>
+  		<strong><%= @user_profile.user.name %>'s Profile</strong>
+	</p>
+	<p>
+  		<%= image_tag @user_profile.profile_pic, class: 'profile-pic' %>
+	</p>
+
+	<p>
+  		<strong>Hobbies:</strong>
+  		<%= @user_profile.hobbies %>
+	</p>
+
+	<p><strong>Owner of:</strong></p>
+	<% @user_profile.user.groups.where('owner' == 'current_user').each do |group| %>
+		<blockquote><p><%= group.name %></blockquote>
+	<% end %>
+
+	<p><strong>Member of:</strong></p>
+	<% @user_profile.user.groups.each do |group| %>
+		<blockquote><p><%= group.name %></blockquote>
+	<% end %>
+	</div>
+
+	<div class="span6">
+	<%= render 'posts/form' %>
+	<hr>
+	<% @posts.each do |post| %>
+		<blockquote><p><%= post.body %></blockquote>
+	<% end %>
+	</div>
+</div>
+
+
+<%= link_to 'Edit', edit_user_profile_path(@user_profile) %> |
+<%= link_to 'Back', user_profiles_path %>

@@ -1,4 +1,16 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+<h1>Goondog</h1>
+
+<% if user_signed_in? %>
+	<% if !current_user.user_profile %>
+		<%= link_to "Create your profile", new_user_profile_path, :class => 'btn btn-warning btn-large' %>
+	<% end %>
 <% end %>
+
+<%= render 'posts/form' %>
+<%= render 'posts/postsummary' %>
+
+
+
+
+
+
